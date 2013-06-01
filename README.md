@@ -1,0 +1,4 @@
+assert
+======
+
+assert for Go
