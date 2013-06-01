@@ -5,14 +5,14 @@ import (
 	"fmt"
 )
 
-func NotNullError(message string, value interface{}) (error) {
+func NotNull(message string, value interface{}) (error) {
 	if value == nil {
 		return errors.New(fmt.Sprintf("%s, expect not null value", message))
 	}
 	return nil
 }
 
-func NullError(message string, value interface{}) (error) {
+func Null(message string, value interface{}) (error) {
 	if value != nil {
 		return errors.New(fmt.Sprintf("%s, expect null value", message))
 	}

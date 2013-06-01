@@ -2,26 +2,26 @@ package assert
 
 import "testing"
 
-func TestNotNullError(t *testing.T) {
-	if NotNullError("foo", t) != nil {
+func TestNotNull(t *testing.T) {
+	if NotNull("foo", t) != nil {
 		t.Errorf("shouldn't return error")
 	}
-	if NotNullError("foo", nil) == nil {
+	if NotNull("foo", nil) == nil {
 		t.Errorf("should return error")
 	}
-	if NotNullError("foo", nil).Error() != "foo, expect not null value" {
+	if NotNull("foo", nil).Error() != "foo, expect not null value" {
 		t.Errorf("errormessage is incorrect")
 	}
 }
 
-func TestNullError(t *testing.T) {
-	if NullError("foo", nil) != nil {
+func TestNull(t *testing.T) {
+	if Null("foo", nil) != nil {
 		t.Errorf("shouldn't return error")
 	}
-	if NullError("foo", t) == nil {
+	if Null("foo", t) == nil {
 		t.Errorf("should return error")
 	}
-	if NullError("foo", t).Error() != "foo, expect null value" {
+	if Null("foo", t).Error() != "foo, expect null value" {
 		t.Errorf("errormessage is incorrect")
 	}
 }
