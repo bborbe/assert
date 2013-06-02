@@ -48,6 +48,12 @@ func False(message string, value bool) error {
 	return nil
 }
 
+//    var value := ...
+//    var expected *InterfaceName
+//    err := assert.Implements("should of type InterfaceName", expected, value)
+//    if err != nil {
+//      t.Error(err)
+//    }
 func Implements(message string, expected interface{}, value interface{}) error {
 	expectedType := reflect.TypeOf(expected).Elem()
 	valueType := reflect.TypeOf(value)
