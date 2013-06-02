@@ -1,6 +1,8 @@
 package assert
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestNotNull(t *testing.T) {
 	if NotNull("foo", t) != nil {
@@ -70,6 +72,29 @@ func TestFalse(t *testing.T) {
 		t.Errorf("should return error")
 	}
 	if False("foo", true).Error() != "foo, expected false but got true" {
+		t.Errorf("errormessage is incorrect")
+	}
+}
+
+type TestInterface interface {
+	Print()
+}
+
+type TestObjectWithoutPrint struct{}
+
+type TestObjectWithPrint struct{}
+
+func (*TestObjectWithPrint) Print() {}
+
+func TestImplements(t *testing.T) {
+	var i *TestInterface = nil
+	if Implements("foo", i, new(TestObjectWithPrint)) != nil {
+		t.Errorf("shouldn't return error")
+	}
+	if Implements("foo", i, new(TestObjectWithoutPrint)) == nil {
+		t.Errorf("should return error")
+	}
+	if Implements("foo", i, new(TestObjectWithoutPrint)).Error() != "foo, expected type 'TestInterface' but got 'TestObjectWithoutPrint'" {
 		t.Errorf("errormessage is incorrect")
 	}
 }

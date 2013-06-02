@@ -3,6 +3,7 @@ package assert
 import (
 	"errors"
 	"fmt"
+	"reflect"
 )
 
 func NotNull(message string, value interface{}) error {
@@ -43,6 +44,17 @@ func True(message string, value bool) error {
 func False(message string, value bool) error {
 	if value != false {
 		return errors.New(fmt.Sprintf("%s, expected false but got true", message))
+	}
+	return nil
+}
+
+func Implements(message string, expected interface{}, value interface{}) error {
+
+	expectedType := reflect.TypeOf(expected).Elem()
+	valueType := reflect.TypeOf(value)
+
+	if !valueType.Implements(expectedType) {
+		return errors.New(fmt.Sprintf("%s, expected type '%s' but got '%s'", message, expectedType.Name(), valueType.Elem().Name()))
 	}
 	return nil
 }
