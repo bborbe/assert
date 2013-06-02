@@ -14,7 +14,7 @@ Usage:
       }
     }
 
-Avaible methods:
+Available methods:
 ---------------
 
     func NotNullError(message string, value interface{}) (error) 
