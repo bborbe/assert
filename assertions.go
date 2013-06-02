@@ -49,12 +49,17 @@ func False(message string, value bool) error {
 }
 
 func Implements(message string, expected interface{}, value interface{}) error {
-
 	expectedType := reflect.TypeOf(expected).Elem()
 	valueType := reflect.TypeOf(value)
-
 	if !valueType.Implements(expectedType) {
 		return errors.New(fmt.Sprintf("%s, expected type '%s' but got '%s'", message, expectedType.Name(), valueType.Elem().Name()))
+	}
+	return nil
+}
+
+func Length(message string, expectedLength int, arrayLength int) error {
+	if expectedLength != arrayLength {
+		return errors.New(fmt.Sprintf("%s, expected array length %d but got %d", message, expectedLength, arrayLength))
 	}
 	return nil
 }

@@ -98,3 +98,15 @@ func TestImplements(t *testing.T) {
 		t.Errorf("errormessage is incorrect")
 	}
 }
+
+func TestLength(t *testing.T) {
+	if Length("foo", 4, len([]byte("test"))) != nil {
+		t.Errorf("shouldn't return error")
+	}
+	if Length("foo", 3, len([]byte("test"))) == nil {
+		t.Errorf("should return error")
+	}
+	if Length("foo", 3, len([]byte("test"))).Error() != "foo, expected array length 3 but got 4" {
+		t.Errorf("errormessage is incorrect")
+	}
+}
