@@ -30,4 +30,3 @@ Package provide assertions for testing
 
 */
 package assert
-
