@@ -27,6 +27,13 @@ func EqualsString(message string, expected string, value string) error {
 	return nil
 }
 
+func EqualsBool(message string, expected bool, value bool) error {
+	if expected != value {
+		return errors.New(fmt.Sprintf("%s, expected %v but got %v", message, expected, value))
+	}
+	return nil
+}
+
 func EqualsInt(message string, expected int, value int) error {
 	if expected != value {
 		return errors.New(fmt.Sprintf("%s, expected %d but got %d", message, expected, value))

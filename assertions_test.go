@@ -110,3 +110,15 @@ func TestLength(t *testing.T) {
 		t.Errorf("errormessage is incorrect")
 	}
 }
+
+func TestEqualsBool(t *testing.T) {
+	if EqualsBool("foo", true, true) != nil {
+		t.Errorf("shouldn't return error")
+	}
+	if EqualsBool("foo", true, false) == nil {
+		t.Errorf("should return error")
+	}
+	if EqualsBool("foo", true, false).Error() != "foo, expected true but got false" {
+		t.Errorf("errormessage is incorrect")
+	}
+}
