@@ -15,7 +15,7 @@ Package provide assertions for testing
 		expectedValue := "a"
 		err := assert.Implements("should be equals", expectedValue, value)
 		if err != nil {
-			t.Error(err)
+			t.Fatal(err)
 		}
 	}
 
@@ -24,7 +24,7 @@ Package provide assertions for testing
 		var expected *InterfaceName
 		err := assert.Implements("should of type InterfaceName", expected, value)
 		if err != nil {
-			t.Error(err)
+			t.Fatal(err)
 		}
 	}
 
