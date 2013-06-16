@@ -87,4 +87,3 @@ func TestNotNilValue(t *testing.T) {
 		}
 	}
 }
-

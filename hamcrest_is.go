@@ -19,5 +19,3 @@ func (m *isMatcher) Matches(value interface{}) bool {
 func (m *isMatcher) DescribeMismatch(value interface{}) error {
 	return fmt.Errorf("Expected: is <%v> but: was <%v>", m.expectedValue, value)
 }
-
-

@@ -17,5 +17,3 @@ func (m *notNilValueMatcher) Matches(value interface{}) bool {
 func (m *notNilValueMatcher) DescribeMismatch(value interface{}) error {
 	return errors.New("Expected: is not nil but: was nil")
 }
-
-
