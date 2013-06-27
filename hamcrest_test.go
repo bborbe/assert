@@ -87,3 +87,61 @@ func TestNotNilValue(t *testing.T) {
 		}
 	}
 }
+
+type TestInterface interface {
+	Print()
+}
+
+type TestObjectWithoutPrint struct{}
+
+type TestObjectWithPrint struct{}
+
+func (*TestObjectWithPrint) Print() {}
+
+func TestImplements(t *testing.T) {
+	{
+		var i *TestInterface = nil
+		value := new(TestObjectWithPrint)
+		err := AssertThat(value, Implements(i))
+		if err != nil {
+			t.Fatal("shouldn't return error")
+		}
+	}
+	{
+		var i *TestInterface = nil
+		value := new(TestObjectWithoutPrint)
+		err := AssertThat(value, Implements(i))
+		if err == nil {
+			t.Fatal("should return error")
+		}
+	}
+	{
+		var i *TestInterface = nil
+		value := new(TestObjectWithoutPrint)
+		err := AssertThat(value, Implements(i))
+		if err.Error() != "expected type 'assert.TestInterface' but got '*assert.TestObjectWithoutPrint'" {
+			t.Fatal("errormessage is incorrect")
+		}
+	}
+}
+
+func TestBuildError(t *testing.T) {
+	{
+		err := buildError("expected type '%s' but got '%s'", "", "foo", "bar")
+		if err == nil {
+			t.Fatal("err is nil")
+		}
+		if err.Error() != "expected type 'foo' but got 'bar'" {
+			t.Fatal("errormessage is incorrect")
+		}
+	}
+	{
+		err := buildError("expected type '%s' but got '%s'", "message", "foo", "bar")
+		if err == nil {
+			t.Fatal("err is nil")
+		}
+		if err.Error() != "message, expected type 'foo' but got 'bar'" {
+			t.Fatal("errormessage is incorrect")
+		}
+	}
+}

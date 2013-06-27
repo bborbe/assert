@@ -10,29 +10,23 @@ Package provide assertions for testing
 		"testing"
 	)
 
-	func TestNotNilValue(t *testing.T) {
-		value := ...
-		err := assertThat(value, NotNilValue())
-		if err != nil {
-			t.Fatal(err)
-		}
-	}
-
-	func TestNilNull(t *testing.T) {
-		value := ...
-		err := assertThat(value, NilValue())
-		if err != nil {
-			t.Fatal(err)
-		}
-	}
-
 	func TestEquals(t *testing.T) {
-		value := ...
-		err := assertThat(value, Is("foo"))
+		value := "a"
+		expectedValue := "a"
+		err := assert.Implements("should be equals", expectedValue, value)
+		if err != nil {
+			t.Fatal(err)
+		}
+	}
+
+	func TestImplements(t *testing.T) {
+		var value := ...
+		var expected *InterfaceName
+		err := assert.Implements("should of type InterfaceName", expected, value)
 		if err != nil {
 			t.Fatal(err)
 		}
 	}
 
 */
-package assert
+package old
