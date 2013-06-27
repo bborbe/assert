@@ -5,7 +5,7 @@ type Matcher interface {
 	DescribeMismatch(value interface{}) error
 }
 
-func assertThat(value interface{}, matcher Matcher) error {
+func AssertThat(value interface{}, matcher Matcher) error {
 	return That(value, matcher)
 }
 
