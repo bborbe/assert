@@ -5,9 +5,12 @@ import (
 	"fmt"
 )
 
-func buildError(format string, message string, expectedValue interface{}, value interface{}) error {
+func buildError(format string, message string, args ...interface{}) error {
 	if len(message) == 0 {
-		return fmt.Errorf(format, expectedValue, value)
+		return fmt.Errorf(format, args...)
 	}
-	return errors.New(fmt.Sprintf("%s, "+format, message, expectedValue, value))
+	var a []interface{}
+	b := append(a, message)
+	c := append(b, args...)
+	return errors.New(fmt.Sprintf("%s, "+format, c...))
 }

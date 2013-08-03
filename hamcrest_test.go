@@ -19,8 +19,16 @@ func TestHamcrestEqualsInt(t *testing.T) {
 	}
 	{
 		err := AssertThat(1, Is(2))
-		if err.Error() != "Expected: is <2> but: was <1>" {
-			t.Fatal("error message missmatch")
+		expectedValue := "expected <2> but got <1>"
+		if err.Error() != expectedValue {
+			t.Fatalf("error message missmatch, expected '%v' but was '%v'", expectedValue, err.Error())
+		}
+	}
+	{
+		err := AssertThat(1, Is(2).Message("msg"))
+		expectedValue := "msg, expected <2> but got <1>"
+		if err.Error() != expectedValue {
+			t.Fatalf("error message missmatch, expected '%v' but was '%v'", expectedValue, err.Error())
 		}
 	}
 }
@@ -40,8 +48,16 @@ func TestHamcrestEqualsString(t *testing.T) {
 	}
 	{
 		err := AssertThat("a", Is("b"))
-		if err.Error() != "Expected: is <b> but: was <a>" {
-			t.Fatal("error message missmatch: %s", err.Error())
+		expectedValue := "expected <b> but got <a>"
+		if err.Error() != expectedValue {
+			t.Fatalf("error message missmatch, expected '%v' but was '%v'", expectedValue, err.Error())
+		}
+	}
+	{
+		err := AssertThat("a", Is("b").Message("msg"))
+		expectedValue := "msg, expected <b> but got <a>"
+		if err.Error() != expectedValue {
+			t.Fatalf("error message missmatch, expected '%v' but was '%v'", expectedValue, err.Error())
 		}
 	}
 }
@@ -61,8 +77,16 @@ func TestNilValue(t *testing.T) {
 	}
 	{
 		err := AssertThat(make([]byte, 0), NilValue())
-		if err.Error() != "Expected: is nil but: was <[]>" {
-			t.Fatal("error message missmatch: %s", err.Error())
+		expectedValue := "expected nil but: was <[]>"
+		if err.Error() != expectedValue {
+			t.Fatalf("error message missmatch, expected '%v' but was '%v'", expectedValue, err.Error())
+		}
+	}
+	{
+		err := AssertThat(make([]byte, 0), NilValue().Message("msg"))
+		expectedValue := "msg, expected nil but: was <[]>"
+		if err.Error() != expectedValue {
+			t.Fatalf("error message missmatch, expected '%v' but was '%v'", expectedValue, err.Error())
 		}
 	}
 }
@@ -82,8 +106,16 @@ func TestNotNilValue(t *testing.T) {
 	}
 	{
 		err := AssertThat(nil, NotNilValue())
-		if err.Error() != "Expected: is not nil but: was nil" {
-			t.Fatal("error message missmatch: %s", err.Error())
+		expectedValue := "expected not nil value"
+		if err.Error() != expectedValue {
+			t.Fatalf("error message missmatch, expected '%v' but was '%v'", expectedValue, err.Error())
+		}
+	}
+	{
+		err := AssertThat(nil, NotNilValue().Message("msg"))
+		expectedValue := "msg, expected not nil value"
+		if err.Error() != expectedValue {
+			t.Fatalf("error message missmatch, expected '%v' but was '%v'", expectedValue, err.Error())
 		}
 	}
 }
@@ -144,4 +176,48 @@ func TestBuildError(t *testing.T) {
 			t.Fatal("errormessage is incorrect")
 		}
 	}
+}
+
+func TestGt(t *testing.T) {
+	{
+		err := AssertThat(3, Gt(2))
+		if err != nil {
+			t.Fatal("expect nil")
+		}
+	}
+	{
+		err := AssertThat(2, Gt(3))
+		if err == nil {
+			t.Fatal("expect nil")
+		}
+	}
+	{
+		err := AssertThat(2, Gt(3))
+		expectedValue := "expected <3> is greater than <2>"
+		if err.Error() != expectedValue {
+			t.Fatalf("error message missmatch, expected '%v' but was '%v'", expectedValue, err.Error())
+		}
+	}
+	{
+		err := AssertThat(2, Gt(3).Message("msg"))
+		expectedValue := "msg, expected <3> is greater than <2>"
+		if err.Error() != expectedValue {
+			t.Fatalf("error message missmatch, expected '%v' but was '%v'", expectedValue, err.Error())
+		}
+	}
+	{
+		err := AssertThat(2.1, Gt(3))
+		expectedValue := "expected type int but got float64"
+		if err.Error() != expectedValue {
+			t.Fatalf("error message missmatch, expected '%v' but was '%v'", expectedValue, err.Error())
+		}
+	}
+	{
+		err := AssertThat(2.1, Gt(3).Message("msg"))
+		expectedValue := "msg, expected type int but got float64"
+		if err.Error() != expectedValue {
+			t.Fatalf("error message missmatch, expected '%v' but was '%v'", expectedValue, err.Error())
+		}
+	}
+
 }

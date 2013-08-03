@@ -1,7 +1,5 @@
 package assert
 
-import "fmt"
-
 type nilValueMatcher struct {
 	message string
 }
@@ -21,5 +19,5 @@ func (m *nilValueMatcher) Matches(value interface{}) bool {
 }
 
 func (m *nilValueMatcher) DescribeMismatch(value interface{}) error {
-	return fmt.Errorf("Expected: is nil but: was <%v>", value)
+	return buildError("expected nil but: was <%v>", m.message, value)
 }

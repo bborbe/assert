@@ -1,7 +1,5 @@
 package assert
 
-import "errors"
-
 type notNilValueMatcher struct {
 	message string
 }
@@ -21,5 +19,5 @@ func (m *notNilValueMatcher) Matches(value interface{}) bool {
 }
 
 func (m *notNilValueMatcher) DescribeMismatch(value interface{}) error {
-	return errors.New("Expected: is not nil but: was nil")
+	return buildError("expected not nil value", m.message)
 }
