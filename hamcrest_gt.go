@@ -29,7 +29,7 @@ func (m *gtMatcher) Matches(value interface{}) bool {
 
 func (m *gtMatcher) DescribeMismatch(value interface{}) error {
 	if sameType(value, m.expectedValue) {
-		return buildError("expected <%v> is greater than <%v>", m.message, value,  m.expectedValue)
+		return buildError("expected <%v> is greater than <%v>", m.message, value, m.expectedValue)
 	}
 	expectedType := reflect.TypeOf(m.expectedValue)
 	valueType := reflect.TypeOf(value)

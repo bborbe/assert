@@ -13,16 +13,16 @@ func buildError(format string, message string, args ...interface{}) error {
 	var a []interface{}
 	b := append(a, message)
 	c := append(b, args...)
-	return errors.New(fmt.Sprintf("%s, " + format, c...))
+	return errors.New(fmt.Sprintf("%s, "+format, c...))
 }
 
-func sameType(a interface{}, b interface {}) bool {
+func sameType(a interface{}, b interface{}) bool {
 	aType := reflect.TypeOf(a)
 	bType := reflect.TypeOf(b)
 	return aType == bType
 }
 
-func less(a interface{}, b interface {}) bool {
+func less(a interface{}, b interface{}) bool {
 	if sameType(a, b) {
 		switch a.(type) {
 		case int:
