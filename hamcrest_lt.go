@@ -4,32 +4,32 @@ import (
 	"reflect"
 )
 
-type gtMatcher struct {
+type ltMatcher struct {
 	expectedValue interface{}
 	message       string
 }
 
-func Gt(expectedValue interface{}) *gtMatcher {
-	matcher := new(gtMatcher)
+func Lt(expectedValue interface{}) *ltMatcher {
+	matcher := new(ltMatcher)
 	matcher.expectedValue = expectedValue
 	return matcher
 }
 
-func (m *gtMatcher) Message(message string) Matcher {
+func (m *ltMatcher) Message(message string) Matcher {
 	m.message = message
 	return m
 }
 
-func (m *gtMatcher) Matches(value interface{}) bool {
+func (m *ltMatcher) Matches(value interface{}) bool {
 	if sameType(value, m.expectedValue) {
-		return less(m.expectedValue, value)
+		return less(value, m.expectedValue)
 	}
 	return false
 }
 
-func (m *gtMatcher) DescribeMismatch(value interface{}) error {
+func (m *ltMatcher) DescribeMismatch(value interface{}) error {
 	if sameType(value, m.expectedValue) {
-		return buildError("expected <%v> is greater than <%v>", m.message, value,  m.expectedValue)
+		return buildError("expected <%v> is less than <%v>", m.message, m.expectedValue, value)
 	}
 	expectedType := reflect.TypeOf(m.expectedValue)
 	valueType := reflect.TypeOf(value)
