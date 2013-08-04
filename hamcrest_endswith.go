@@ -20,7 +20,7 @@ func (m *endswithMatcher) Message(message string) Matcher {
 
 func (m *endswithMatcher) Matches(value interface{}) bool {
 	text := value.(string)
-	return strings.LastIndex(text, m.expectedValue) == len(text) - len(m.expectedValue)
+	return strings.LastIndex(text, m.expectedValue) == len(text)-len(m.expectedValue)
 }
 
 func (m *endswithMatcher) DescribeMismatch(value interface{}) error {

@@ -397,8 +397,6 @@ func TestContains(t *testing.T) {
 	}
 }
 
-
-
 func TestStartswith(t *testing.T) {
 	{
 		err := AssertThat("hello world", Startswith("hello"))
@@ -456,5 +454,3 @@ func TestEndswith(t *testing.T) {
 		}
 	}
 }
-
-
