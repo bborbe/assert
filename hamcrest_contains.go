@@ -1,6 +1,9 @@
 package assert
 
-import "strings"
+import (
+	"reflect"
+	"strings"
+)
 
 type containsMatcher struct {
 	expectedValue string
@@ -19,10 +22,19 @@ func (m *containsMatcher) Message(message string) Matcher {
 }
 
 func (m *containsMatcher) Matches(value interface{}) bool {
-	text := value.(string)
-	return strings.Contains(text, m.expectedValue)
+	if sameType(value, m.expectedValue) {
+		text := value.(string)
+		return strings.Contains(text, m.expectedValue)
+	}
+	return false
 }
 
 func (m *containsMatcher) DescribeMismatch(value interface{}) error {
-	return buildError("expected <%v> contains <%v>", m.message, value, m.expectedValue)
+	if sameType(value, m.expectedValue) {
+		return buildError("expected <%v> contains <%v>", m.message, value, m.expectedValue)
+	}
+	expectedType := reflect.TypeOf(m.expectedValue)
+	valueType := reflect.TypeOf(value)
+	return buildError("expected type %v but got %v", m.message, expectedType, valueType)
+
 }

@@ -1,6 +1,9 @@
 package assert
 
-import "strings"
+import (
+	"reflect"
+	"strings"
+)
 
 type startswithMatcher struct {
 	expectedValue string
@@ -19,10 +22,19 @@ func (m *startswithMatcher) Message(message string) Matcher {
 }
 
 func (m *startswithMatcher) Matches(value interface{}) bool {
-	text := value.(string)
-	return strings.Index(text, m.expectedValue) == 0
+	if sameType(value, m.expectedValue) {
+		text := value.(string)
+		return strings.Index(text, m.expectedValue) == 0
+	}
+	return false
 }
 
 func (m *startswithMatcher) DescribeMismatch(value interface{}) error {
-	return buildError("expected <%v> starts with <%v>", m.message, value, m.expectedValue)
+	if sameType(value, m.expectedValue) {
+		return buildError("expected <%v> starts with <%v>", m.message, value, m.expectedValue)
+	}
+	expectedType := reflect.TypeOf(m.expectedValue)
+	valueType := reflect.TypeOf(value)
+	return buildError("expected type %v but got %v", m.message, expectedType, valueType)
+
 }
