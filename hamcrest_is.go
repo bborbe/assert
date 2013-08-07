@@ -1,5 +1,7 @@
 package assert
 
+import "reflect"
+
 type isMatcher struct {
 	expectedValue interface{}
 	message       string
@@ -17,9 +19,18 @@ func (m *isMatcher) Message(message string) Matcher {
 }
 
 func (m *isMatcher) Matches(value interface{}) bool {
-	return m.expectedValue == value
+	if sameType(value, m.expectedValue) {
+		return m.expectedValue == value
+	}
+	return false
 }
 
 func (m *isMatcher) DescribeMismatch(value interface{}) error {
-	return buildError("expected <%v> but got <%v>", m.message, m.expectedValue, value)
+	if sameType(value, m.expectedValue) {
+		return buildError("expected <%v> but got <%v>", m.message, m.expectedValue, value)
+	}
+	expectedType := reflect.TypeOf(m.expectedValue)
+	valueType := reflect.TypeOf(value)
+	return buildError("expected type %v but got %v", m.message, expectedType, valueType)
+
 }

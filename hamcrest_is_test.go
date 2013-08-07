@@ -2,7 +2,7 @@ package assert
 
 import "testing"
 
-func TestHamcrestEqualsInt(t *testing.T) {
+func TestIsInt(t *testing.T) {
 	{
 		err := AssertThat(1, Is(1))
 		if err != nil {
@@ -31,7 +31,7 @@ func TestHamcrestEqualsInt(t *testing.T) {
 	}
 }
 
-func TestHamcrestEqualsString(t *testing.T) {
+func TestIsString(t *testing.T) {
 	{
 		err := AssertThat("a", Is("a"))
 		if err != nil {
@@ -54,6 +54,22 @@ func TestHamcrestEqualsString(t *testing.T) {
 	{
 		err := AssertThat("a", Is("b").Message("msg"))
 		expectedValue := "msg, expected <b> but got <a>"
+		if err.Error() != expectedValue {
+			t.Fatalf("error message missmatch, expected '%v' but was '%v'", expectedValue, err.Error())
+		}
+	}
+}
+
+func TestIsTypeMissmatch(t *testing.T) {
+	{
+		err := AssertThat([]byte{}, Is(""))
+		if err == nil {
+			t.Fatal("expect error")
+		}
+	}
+	{
+		err := AssertThat([]byte{}, Is(""))
+		expectedValue := "expected type string but got []uint8"
 		if err.Error() != expectedValue {
 			t.Fatalf("error message missmatch, expected '%v' but was '%v'", expectedValue, err.Error())
 		}
