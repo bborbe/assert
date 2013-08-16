@@ -1,11 +1,11 @@
 package assert
 
 type notValueMatcher struct {
-	message        string
-	expectedValue  Matcher
+	message       string
+	expectedValue Matcher
 }
 
-func Not(expectedValue  Matcher) *notValueMatcher {
+func Not(expectedValue Matcher) *notValueMatcher {
 	m := new(notValueMatcher)
 	m.expectedValue = expectedValue
 	return m
