@@ -50,6 +50,7 @@ func less(a interface{}, b interface{}) bool {
 		case float64:
 			return a.(float64) < b.(float64)
 		}
+		panic(fmt.Sprintf("unsupport typ: %v", reflect.TypeOf(a)))
 	}
 	return false
 }
