@@ -24,3 +24,24 @@ func TestBuildError(t *testing.T) {
 		}
 	}
 }
+
+func TestIsByteArray(t *testing.T) {
+	{
+		err := AssertThat(isByteArray(nil), Is(false))
+		if err != nil {
+			t.Fatal(err)
+		}
+	}
+	{
+		err := AssertThat(isByteArray([]string{"a", "b"}), Is(false))
+		if err != nil {
+			t.Fatal(err)
+		}
+	}
+	{
+		err := AssertThat(isByteArray([]byte("hello")), Is(true))
+		if err != nil {
+			t.Fatal(err)
+		}
+	}
+}

@@ -54,3 +54,11 @@ func less(a interface{}, b interface{}) bool {
 	}
 	return false
 }
+
+func isByteArray(value interface{}) bool {
+	if value == nil {
+		return false
+	}
+	typ := reflect.TypeOf(value)
+	return typ.Kind() == reflect.Slice && typ.Elem().Kind() == reflect.Uint8
+}

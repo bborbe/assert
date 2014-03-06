@@ -21,13 +21,9 @@ func (m *isMatcher) Message(message string) Matcher {
 	return m
 }
 
-func (m *isMatcher) isByteArray(value interface{}) bool {
-	return sameType(value, make([]byte, 0))
-}
-
 func (m *isMatcher) Matches(value interface{}) bool {
 	if sameType(value, m.expectedValue) {
-		if m.isByteArray(value) {
+		if isByteArray(value) {
 			return bytes.Equal(value.([]byte), m.expectedValue.([]byte))
 		}
 		return m.expectedValue == value
