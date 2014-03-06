@@ -1,5 +1,7 @@
 package assert
 
+import "testing"
+
 type Matcher interface {
 	Matches(value interface{}) bool
 	DescribeMismatch(value interface{}) error

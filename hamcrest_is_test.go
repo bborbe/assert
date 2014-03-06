@@ -41,7 +41,7 @@ func TestIsString(t *testing.T) {
 	{
 		err := AssertThat("a", Is("b"))
 		if err == nil {
-			t.Fatal("expect nil")
+			t.Fatal("expect error")
 		}
 	}
 	{
@@ -72,6 +72,21 @@ func TestIsTypeMissmatch(t *testing.T) {
 		expectedValue := "expected type string but got []uint8"
 		if err.Error() != expectedValue {
 			t.Fatalf("error message missmatch, expected '%v' but was '%v'", expectedValue, err.Error())
+		}
+	}
+}
+
+func TestIsByteArrayMatch(t *testing.T) {
+	{
+		err := AssertThat([]byte("a"), Is([]byte("a")))
+		if err != nil {
+			t.Fatal("expect nil")
+		}
+	}
+	{
+		err := AssertThat([]byte("a"), Is([]byte("b")))
+		if err == nil {
+			t.Fatal("expect error")
 		}
 	}
 }
