@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SOURCEDIRECTORY="github.com/bborbe/go"
+SOURCEDIRECTORY="github.com/bborbe/assert"
 
 export GOROOT=/opt/go1.5.1
 export PATH=$GOROOT/bin:$PATH
