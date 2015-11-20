@@ -7,7 +7,7 @@ export PATH=$GOROOT/bin:$PATH
 export GOPATH=${WORKSPACE}
 export REPORT_DIR=${WORKSPACE}/test-reports
 DEB="${NAME}_${VERSION}.deb"
-rm -rf $REPORT_DIR ${WORKSPACE}/*.deb
+rm -rf $REPORT_DIR ${WORKSPACE}/*.deb ${WORKSPACE}/pkg
 mkdir -p $REPORT_DIR
 PACKAGES=`cd src && find $SOURCEDIRECTORY -name "*_test.go" | /usr/lib/go/bin/dirof | /usr/lib/go/bin/unique`
 FAILED=false
