@@ -13,18 +13,18 @@ PACKAGES=`cd src && find $SOURCEDIRECTORY -name "*_test.go" | /opt/utils/bin/dir
 FAILED=false
 for PACKAGE in $PACKAGES
 do
-    XML=$REPORT_DIR/`/opt/utils/bin/pkg2xmlname $PACKAGE`
-    OUT=$XML.out
-    go test -i $PACKAGE
-    go test -v $PACKAGE | tee $OUT
-    cat $OUT
-	/usr/lib/go/bin/go2xunit -fail=true -input $OUT -output $XML
-	rc=$?
-	if [ $rc != 0 ]
-	then
-	    echo "Tests failed for package $PACKAGE"
-    	FAILED=true
-	fi
+  XML=$REPORT_DIR/`/opt/utils/bin/pkg2xmlname $PACKAGE`
+  OUT=$XML.out
+  go test -i $PACKAGE
+  go test -v $PACKAGE | tee $OUT
+  cat $OUT
+  /opt/go2xunit/bin/go2xunit -fail=true -input $OUT -output $XML
+  rc=$?
+  if [ $rc != 0 ]
+  then
+    echo "Tests failed for package $PACKAGE"
+    FAILED=true
+  fi
 done
 
 if $FAILED
