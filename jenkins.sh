@@ -4,7 +4,7 @@ SOURCEDIRECTORY="github.com/bborbe/assert"
 
 ################################################################################
 
-export GOROOT=/opt/go1.5.1
+export GOROOT=/opt/go
 export PATH=/opt/utils/bin/:/opt/go2xunit/bin/:$GOROOT/bin:$PATH
 export GOPATH=${WORKSPACE}
 export REPORT_DIR=${WORKSPACE}/test-reports
