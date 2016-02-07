@@ -1,4 +1,4 @@
-# assert
+# Assert
 
 Package provide assertions for testing in Go
 
