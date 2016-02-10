@@ -5,10 +5,8 @@ Assert ala Java Hamcrest in Go
 ## Usage
 
 ```
-
 import (
 	"testing"
-
 	. "github.com/bborbe/assert"
 )
 
