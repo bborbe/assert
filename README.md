@@ -1,6 +1,17 @@
 # Assert
 
-Package provide assertions for testing in Go
+Assert ala Java Hamcrest in Go
+
+## Usage
+
+```
+func TestEquals(t *testing.T) {
+  value := ...
+  if err := assertThat(value, Is("foo")); err != nil {
+    t.Fatal(err)
+  }
+}
+```
 
 # Documentation
 
