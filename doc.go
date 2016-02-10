@@ -13,24 +13,21 @@ Package provide assertions for testing
 
 	func TestNotNilValue(t *testing.T) {
 		value := ...
-		err := assertThat(value, NotNilValue())
-		if err != nil {
+		if err := assertThat(value, NotNilValue()); err != nil {
 			t.Fatal(err)
 		}
 	}
 
 	func TestNilNull(t *testing.T) {
 		value := ...
-		err := assertThat(value, NilValue())
-		if err != nil {
+		if err := assertThat(value, NilValue()); err != nil {
 			t.Fatal(err)
 		}
 	}
 
 	func TestEquals(t *testing.T) {
 		value := ...
-		err := assertThat(value, Is("foo"))
-		if err != nil {
+		if err := assertThat(value, Is("foo")); err != nil {
 			t.Fatal(err)
 		}
 	}
