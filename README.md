@@ -18,10 +18,6 @@ func TestEquals(t *testing.T) {
 }
 ```
 
-# Documentation
-
-http://godoc.org/github.com/bborbe/assert
-
 # Continuous integration
 
 http://jenkins.benjamin-borbe.de/job/Go-Assert/
