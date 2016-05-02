@@ -30,3 +30,10 @@ func TestNilValue(t *testing.T) {
 		}
 	}
 }
+
+func TestNilValuePointer(t *testing.T) {
+	var value *string
+	if err := AssertThat(value, NilValue()); err != nil {
+		t.Fatal(err)
+	}
+}
