@@ -16,6 +16,13 @@ func TestNilValue(t *testing.T) {
 		}
 	}
 	{
+		var foo *string
+		err := AssertThat(foo, NilValue())
+		if err != nil {
+			t.Fatal("expect nil")
+		}
+	}
+	{
 		err := AssertThat(make([]byte, 0), NilValue())
 		expectedValue := "expected nil but: was <[]>"
 		if err.Error() != expectedValue {

@@ -1,5 +1,7 @@
 package assert
 
+import "reflect"
+
 type notNilValueMatcher struct {
 	message string
 }
@@ -15,7 +17,7 @@ func (m *notNilValueMatcher) Message(message string) Matcher {
 }
 
 func (m *notNilValueMatcher) Matches(value interface{}) bool {
-	return value != nil
+	return value != nil && !reflect.ValueOf(value).IsNil()
 }
 
 func (m *notNilValueMatcher) DescribeMismatch(value interface{}) error {
