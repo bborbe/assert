@@ -17,7 +17,14 @@ func (m *nilValueMatcher) Message(message string) Matcher {
 }
 
 func (m *nilValueMatcher) Matches(value interface{}) bool {
-	return value == nil || reflect.ValueOf(value).IsNil()
+	if value == nil {
+		return true
+	}
+	r := reflect.ValueOf(value)
+	if r.Kind() == reflect.String {
+		return false
+	}
+	return r.IsNil()
 }
 
 func (m *nilValueMatcher) DescribeMismatch(value interface{}) error {
