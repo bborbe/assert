@@ -9,6 +9,7 @@ type leMatcher struct {
 	message       string
 }
 
+// Le checks if the value is less or equal the expected value
 func Le(expectedValue interface{}) *leMatcher {
 	matcher := new(leMatcher)
 	matcher.expectedValue = expectedValue

@@ -10,6 +10,7 @@ type isMatcher struct {
 	message       string
 }
 
+// Is checks if the value eq with the expected value
 func Is(expectedValue interface{}) *isMatcher {
 	matcher := new(isMatcher)
 	matcher.expectedValue = expectedValue

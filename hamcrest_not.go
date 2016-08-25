@@ -5,6 +5,7 @@ type notValueMatcher struct {
 	expectedValue Matcher
 }
 
+// Not checks if the value matches not expected matcher
 func Not(expectedValue Matcher) *notValueMatcher {
 	m := new(notValueMatcher)
 	m.expectedValue = expectedValue

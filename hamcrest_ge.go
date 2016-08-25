@@ -9,6 +9,7 @@ type geMatcher struct {
 	message       string
 }
 
+// Ge checks if the value is greater or equal the expected value
 func Ge(expectedValue interface{}) *geMatcher {
 	matcher := new(geMatcher)
 	matcher.expectedValue = expectedValue

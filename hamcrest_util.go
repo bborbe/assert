@@ -1,7 +1,6 @@
 package assert
 
 import (
-	"errors"
 	"fmt"
 	"reflect"
 )
@@ -13,7 +12,7 @@ func buildError(format string, message string, args ...interface{}) error {
 	var a []interface{}
 	b := append(a, message)
 	c := append(b, args...)
-	return errors.New(fmt.Sprintf("%s, "+format, c...))
+	return fmt.Errorf("%s, "+format, c...)
 }
 
 func sameType(a interface{}, b interface{}) bool {

@@ -10,6 +10,7 @@ type containsMatcher struct {
 	message       string
 }
 
+// Contains checks if the value contains with the expected value
 func Contains(expectedValue string) *containsMatcher {
 	matcher := new(containsMatcher)
 	matcher.expectedValue = expectedValue

@@ -9,6 +9,7 @@ type gtMatcher struct {
 	message       string
 }
 
+// Gt checks if the value is greater the expected value
 func Gt(expectedValue interface{}) *gtMatcher {
 	matcher := new(gtMatcher)
 	matcher.expectedValue = expectedValue

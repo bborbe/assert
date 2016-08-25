@@ -9,6 +9,7 @@ type ltMatcher struct {
 	message       string
 }
 
+// Lt checks if the value is less the expected value
 func Lt(expectedValue interface{}) *ltMatcher {
 	matcher := new(ltMatcher)
 	matcher.expectedValue = expectedValue

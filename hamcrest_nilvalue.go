@@ -6,6 +6,7 @@ type nilValueMatcher struct {
 	message string
 }
 
+// NilValue checks if the value is nil
 func NilValue() *nilValueMatcher {
 	matcher := new(nilValueMatcher)
 	return matcher

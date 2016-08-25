@@ -6,6 +6,7 @@ type notNilValueMatcher struct {
 	message string
 }
 
+// NotNilValue checks if the value is not nil
 func NotNilValue() *notNilValueMatcher {
 	matcher := new(notNilValueMatcher)
 	return matcher

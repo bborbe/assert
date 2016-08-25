@@ -9,6 +9,7 @@ type eqMatcher struct {
 	message       string
 }
 
+// Eq checks if the value eq with the expected value
 func Eq(expectedValue interface{}) *eqMatcher {
 	matcher := new(eqMatcher)
 	matcher.expectedValue = expectedValue

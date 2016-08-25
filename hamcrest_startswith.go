@@ -10,6 +10,7 @@ type startswithMatcher struct {
 	message       string
 }
 
+// Startswith checks if the value starts with the expected value
 func Startswith(expectedValue string) *startswithMatcher {
 	matcher := new(startswithMatcher)
 	matcher.expectedValue = expectedValue

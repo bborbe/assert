@@ -9,6 +9,7 @@ type implementsMatcher struct {
 	message       string
 }
 
+// Implements checks if the value implements the expected value
 func Implements(expectedValue interface{}) *implementsMatcher {
 	m := new(implementsMatcher)
 	m.expectedValue = expectedValue

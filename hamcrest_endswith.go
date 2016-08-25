@@ -10,6 +10,7 @@ type endswithMatcher struct {
 	message       string
 }
 
+// Endswith checks if the value ends with the expected value
 func Endswith(expectedValue string) *endswithMatcher {
 	matcher := new(endswithMatcher)
 	matcher.expectedValue = expectedValue
