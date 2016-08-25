@@ -37,4 +37,12 @@ func TestImplements(t *testing.T) {
 			t.Fatal("errormessage is incorrect")
 		}
 	}
+	{
+		var i *TestInterface = nil
+		value := new(TestObjectWithoutPrint)
+		err := AssertThat(value, Implements(i).Message("msg"))
+		if err.Error() != "msg, expected type 'assert.TestInterface' but got '*assert.TestObjectWithoutPrint'" {
+			t.Fatal("errormessage is incorrect")
+		}
+	}
 }

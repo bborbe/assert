@@ -8,6 +8,11 @@ lint:
 errcheck:
 	errcheck -ignore '(Close|Write)' ./...
 check: lint vet errcheck
+cov:
+	mkdir -p target
+	go test -coverprofile=target/coverage.out ./...
+	go tool cover -func=target/coverage.out
+	go tool cover -html=target/coverage.out
 format:
 	find . -name "*.go" -exec gofmt -w "{}" \;
 	goimports -w=true .
@@ -20,4 +25,4 @@ prepare:
 update:
 	glide up
 clean:
-	rm -rf vendor
+	rm -rf vendor target

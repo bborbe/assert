@@ -45,3 +45,58 @@ func TestIsByteArray(t *testing.T) {
 		}
 	}
 }
+
+func TestLessTypeNotEqualAlwaysReturnFalse(t *testing.T) {
+	if less(int32(1), int64(2)) {
+		t.Fatal("invalid")
+	}
+}
+
+func TestLessNotSupportTypePanics(t *testing.T) {
+	defer func() {
+		if r := recover(); r != nil {
+		} else {
+			t.Fatal("panic should be called")
+		}
+	}()
+	less("1", "1")
+}
+
+func TestLess(t *testing.T) {
+	if less(int(1), int(1)) {
+		t.Fatal("invalid")
+	}
+	if less(int8(1), int8(1)) {
+		t.Fatal("invalid")
+	}
+	if less(int16(1), int16(1)) {
+		t.Fatal("invalid")
+	}
+	if less(int32(1), int32(1)) {
+		t.Fatal("invalid")
+	}
+	if less(int64(1), int64(1)) {
+		t.Fatal("invalid")
+	}
+	if less(uint(1), uint(1)) {
+		t.Fatal("invalid")
+	}
+	if less(uint8(1), uint8(1)) {
+		t.Fatal("invalid")
+	}
+	if less(uint16(1), uint16(1)) {
+		t.Fatal("invalid")
+	}
+	if less(uint32(1), uint32(1)) {
+		t.Fatal("invalid")
+	}
+	if less(uint64(1), uint64(1)) {
+		t.Fatal("invalid")
+	}
+	if less(float32(1), float32(1)) {
+		t.Fatal("invalid")
+	}
+	if less(float64(1), float64(1)) {
+		t.Fatal("invalid")
+	}
+}
