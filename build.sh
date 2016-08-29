@@ -4,6 +4,8 @@ SOURCEDIRECTORY="github.com/bborbe/assert"
 
 ################################################################################
 
+echo "use workspace ${WORKSPACE}"
+
 export GOROOT=/opt/go
 export PATH=/opt/utils/bin/:/opt/go2xunit/bin/:$GOROOT/bin:$PATH
 export GOPATH=${WORKSPACE}
