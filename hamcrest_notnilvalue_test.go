@@ -10,6 +10,12 @@ func TestNotNilValue(t *testing.T) {
 		}
 	}
 	{
+		err := AssertThat(0, NotNilValue())
+		if err != nil {
+			t.Fatal("expect nil")
+		}
+	}
+	{
 		err := AssertThat("", NotNilValue())
 		if err != nil {
 			t.Fatal("expect nil")

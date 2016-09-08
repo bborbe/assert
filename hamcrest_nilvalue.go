@@ -22,7 +22,7 @@ func (m *nilValueMatcher) Matches(value interface{}) bool {
 		return true
 	}
 	r := reflect.ValueOf(value)
-	if r.Kind() == reflect.String {
+	if r.Kind() != reflect.Ptr {
 		return false
 	}
 	return r.IsNil()

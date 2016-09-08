@@ -22,6 +22,12 @@ func TestNilValue(t *testing.T) {
 		}
 	}
 	{
+		err := AssertThat(0, NilValue())
+		if err == nil {
+			t.Fatal("expect not nil")
+		}
+	}
+	{
 		var foo *string
 		err := AssertThat(foo, NilValue())
 		if err != nil {

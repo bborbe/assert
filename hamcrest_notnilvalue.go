@@ -1,6 +1,8 @@
 package assert
 
-import "reflect"
+import (
+	"reflect"
+)
 
 type notNilValueMatcher struct {
 	message string
@@ -22,7 +24,7 @@ func (m *notNilValueMatcher) Matches(value interface{}) bool {
 		return false
 	}
 	r := reflect.ValueOf(value)
-	if r.Kind() == reflect.String {
+	if r.Kind() != reflect.Ptr {
 		return true
 	}
 	return !r.IsNil()
