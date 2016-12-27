@@ -20,7 +20,7 @@ func TestEquals(t *testing.T) {
 
 # Continuous integration
 
-[Jenkins](https://www.benjamin-borbe.de/jenkins/job/Go-Assert/)
+[Jenkins](https://jenkins.benjamin-borbe.de/job/Go-Assert/)
 
 ## Copyright and license
 
