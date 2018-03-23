@@ -5,8 +5,8 @@ podTemplate(
 	label: label,
 	containers: [
 		containerTemplate(
-			name: 'build',
-			image: 'docker.io/golang:1.10.0',
+			name: 'build-golang',
+			image: 'docker.io/golang:1.10',
 			ttyEnabled: true,
 			command: 'cat',
 			resourceRequestCpu: '500m',
@@ -30,17 +30,28 @@ podTemplate(
 			]),
 		])
 		try {
-			container('build') {
-				stage('Checkout') {
+			container('build-golang') {
+				stage('Golang Checkout') {
 					timeout(time: 5, unit: 'MINUTES') {
-						checkout scm
+						checkout([
+							$class: 'GitSCM',
+							branches: scm.branches,
+							doGenerateSubmoduleConfigurations: scm.doGenerateSubmoduleConfigurations,
+							extensions: scm.extensions + [[$class: 'CloneOption', noTags: false, reference: '', shallow: true]],
+							submoduleCfg: [],
+							userRemoteConfigs: scm.userRemoteConfigs
+						])
+					}
+				}
+				stage('Golang Link') {
+					timeout(time: 5, unit: 'MINUTES') {
 						sh """
 						mkdir -p /go/src/github.com/bborbe
 						ln -s `pwd` /go/src/github.com/bborbe/assert
 						"""
 					}
 				}
-				stage('Test') {
+				stage('Golang Test') {
 					timeout(time: 15, unit: 'MINUTES') {
 						sh "cd /go/src/github.com/bborbe/assert && make test"
 					}
