@@ -31,7 +31,7 @@ podTemplate(
 		])
 		try {
 			container('build-golang') {
-				stage('Checkout') {
+				stage('Golang Checkout') {
 					timeout(time: 5, unit: 'MINUTES') {
 						checkout([
 							$class: 'GitSCM',
