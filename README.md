@@ -4,10 +4,10 @@ Assert ala Java Hamcrest in Go
 
 ## Usage
 
-```
+```go
 import (
-	"testing"
-	. "github.com/bborbe/assert"
+  "testing"
+  . "github.com/bborbe/assert"
 )
 
 func TestEquals(t *testing.T) {
